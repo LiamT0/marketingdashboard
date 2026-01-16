@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="robots" content="noindex" />
+  <title>Redirecting...</title>
+  <script>
+    (function () {
+      var l = window.location;
+      // GitHub Pages serves 404 for direct hits to client-side routes.
+      // Redirect to the site root with the original path in ?p= so index.html can restore it.
+      var base = '';
+      var parts = l.pathname.split('/').filter(Boolean);
+      // If hosted at https://user.github.io/<repo>/..., preserve the repo segment as base.
+      if (l.hostname.endsWith('github.io') && parts.length > 0) {
+        base = '/' + parts[0];
+      }
+      var fullPath = l.pathname + l.search + l.hash;
+      l.replace(l.origin + base + '/?p=' + encodeURIComponent(fullPath));
+    })();
+  </script>
+</head>
+<body></body>
+</html>
